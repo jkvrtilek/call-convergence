@@ -13,7 +13,8 @@ library(gdata)
 # load kinship data
 kin_raw <- read_csv("social_data/kinship-all-bats.csv") %>% 
   mutate(dir.dyad = paste(bat1,bat2,sep="_")) %>% 
-  select(dir.dyad,bat1,bat2,4:8)
+  mutate(kin.r = kinship) %>% 
+  select(dir.dyad,bat1,bat2,kin.r,5:8)
 
 # change kinship for bats from same site (Tole) in diff seasons from 0 to NA
 temp <- kin_raw %>% 
@@ -21,7 +22,9 @@ temp <- kin_raw %>%
   filter(season1!=season2)
 
 kin <- kin_raw %>% 
-  mutate(kinship = case_when(dir.dyad %in% temp$dir.dyad ~ NA))
+  mutate(kinship = case_when(dir.dyad %in% temp$dir.dyad ~ NA,
+                              !(dir.dyad %in% temp$dir.dyad) ~ kin.r)) %>% 
+  select(dir.dyad:bat2, kinship, site1:season2)
 
 # load phd data
 rates15 <- read_csv("social_data/2015_foodsharing_rates.csv") %>% 
