@@ -1,7 +1,7 @@
 # combine data from 2015, 2017, 2019, and call distance to make a dataframe
-# columns: Directed dyad, Vocal distance, Kinship, Allogrooming given, Allogrooming received, Food given, Food received, Capture population bat 1, Capture population bat 2
+# columns: Directed dyad, Vocal distance, Kinship, Allogrooming given, Allogrooming received, Food given, Food received, Capture population bat 1, Capture population bat 2, Sex 1, Sex 2
 # Julia Vrtilek
-# 29 March 2024, updated 10 April 2024
+# 29 March 2024, updated 10 April 2024, 10 May 2024
 
 # set working directory
 setwd("/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/")
@@ -27,28 +27,31 @@ kin <- kin_raw %>%
   select(dir.dyad:bat2, kinship, site1:season2)
 
 # load phd data
-rates15 <- read_csv("social_data/2015_foodsharing_rates.csv") %>% 
+rates15 <- read.csv("social_data/2010-2014_foodsharing/food_sharing_rates_2010-2014.csv") %>% 
   mutate(dir.dyad = paste(donor,receiver,sep="_")) %>% 
   mutate(grooming = NA) %>% 
-  mutate(foodsharing = rate) %>% 
-  select(dir.dyad,grooming,foodsharing)
+  mutate(foodsharing = donation.rate) %>% 
+  mutate(actor.sex = donor.sex) %>% 
+  select(dir.dyad,grooming,foodsharing,actor.sex,receiver.sex)
 
 # load and combine postdoc data
-food17 <- readRDS("social_data/2017_foodsharing_rates.RDS") %>% 
-  mutate(foodsharing = rate) %>% 
+food17 <- read.csv("social_data/2016-2017_relationship_formation/vamp_dyadic_foodsharing_rates_2016-2017.csv") %>% 
+  mutate(dir.dyad = paste(actor,receiver,sep="_")) %>% 
+  mutate(foodsharing = donation.rate) %>% 
   select(dir.dyad,foodsharing)
 
-groom17 <- readRDS("social_data/2017_grooming_rates.RDS") %>% 
-  mutate(grooming = rate) %>% 
+groom17 <- read.csv("social_data/2016-2017_relationship_formation/vamp_dyadic_grooming_rates_2016-2017.csv") %>% 
+  mutate(dir.dyad = paste(actor,receiver,sep="_")) %>% 
+  mutate(grooming = grooming.rate) %>% 
   select(dir.dyad,grooming)
 
 rates17 <- left_join(groom17,food17,by="dir.dyad")
 
 # load lab data
-rates19 <- readRDS("social_data/2019_grooming_rates.RDS") %>% 
-  mutate(grooming = rate) %>% 
+rates19 <- read.csv("social_data/2019_grooming/2019_grooming_rates.csv") %>% 
+  mutate(grooming = grooming.rate) %>% 
   mutate(foodsharing = NA) %>% 
-  select(dir.dyad,grooming,foodsharing)
+  select(dir.dyad,grooming,foodsharing,actor.sex,receiver.sex)
 
 # combine rates for left_join
 all_rates <- rbind(rates15,rates17,rates19)
@@ -64,4 +67,7 @@ distdf$dir.dyad <- gsub(":","_",distdf$dir.dyad)
 d <- left_join(kin,all_rates,by = "dir.dyad")
 d2 <- left_join(d,distdf,by = "dir.dyad")
 
-saveRDS(d2,"vocal_social_data.RDS")
+d3 <- d2 %>% 
+  separate(dir.dyad, into = c(actor,receiver), sep = "_", remove = FALSE)
+
+write.csv(d2,"vocal_social_data.csv")

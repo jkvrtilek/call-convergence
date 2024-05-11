@@ -18,4 +18,4 @@ ff <- readRDS("ds_fundfreq_summary.RDS")
 fulld <- left_join(specan, ff, by = "sound.files")
 
 # save combined dataset
-saveRDS(fulld, "vampire_call_measures.RDS")
+write.csv(fulld, "vampire_call_measures.csv")

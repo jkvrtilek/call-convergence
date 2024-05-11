@@ -13,7 +13,7 @@ library(MASS)
 library(tidyverse)
 
 # get data
-raw <- readRDS("vampire_call_measures_filtered_transformed.RDS")
+raw <- read.csv("vampire_call_measures_filtered_transformed.csv")
 
 # get sample sizes
 d <- raw %>% 
@@ -107,7 +107,6 @@ tibble(bat= colnames(cm),
   xlab("log10 number of cases")+
   ylab('correct classification rate')+
   ggtitle('accuracy by sampling effort per bat')
-
 
 
 

@@ -10,7 +10,7 @@ library(tidyverse)
 library(MASS)
 
 # get data
-raw <- readRDS("vampire_call_measures_filtered.RDS")
+raw <- read.csv("vampire_call_measures_filtered.csv")
 
 # make df to modify
 d <- raw
@@ -67,7 +67,7 @@ d2 <- d %>% mutate(across(.cols=duration:peakf, .fns = scale2))
 d3 <- d2 %>% 
   filter(indicator == TRUE)
 
-saveRDS(d3, "vampire_call_measures_filtered_transformed.RDS")
+write.csv(d3, "vampire_call_measures_filtered_transformed.csv")
 
 
 

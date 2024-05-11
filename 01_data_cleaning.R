@@ -9,7 +9,7 @@ setwd("/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence")
 library(tidyverse)
 
 # load data
-raw <- readRDS("vampire_call_measures.RDS")
+raw <- read.csv("vampire_call_measures.csv")
 
 # rename files mistakenly labeled from 2018
 d <- raw
@@ -35,4 +35,4 @@ d4 <- d3 %>%
                                is.nan(meanslope) ~ F))
 
 # save file
-saveRDS(d4, "vampire_call_measures_filtered.RDS")
+write.csv(d4, "vampire_call_measures_filtered.csv")
