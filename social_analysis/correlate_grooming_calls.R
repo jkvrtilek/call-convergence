@@ -112,7 +112,7 @@ common_matrices <- function(m1 = m1, m2 = m2){
 ##################################################################
 
 # get bond strength (grooming rates)
-bonds <- readRDS("vocal_social_data.RDS")
+bonds <- read.csv("vocal_social_data.csv")
 
 # use that function to get bond strength matrix (bm)
 bm <- bonds %>% 
@@ -127,7 +127,7 @@ rownames(dist.m) <- colnames(dist.m)
 
 # get kinship matrix
 km <- bonds %>% 
-  dplyr::select(bat1,bat2, kinship) %>% 
+  dplyr::select(actor,receiver,kinship) %>% 
   graph_from_data_frame(directed=T) %>% 
   get.adjacency(attr='kinship', sparse=FALSE)
 
@@ -145,6 +145,13 @@ mantel(bm2, dm2, method= "spearman")
 # predict call similarity using both social bond and kinship
 set.seed(123)
 mrqap.dsp(dm2 ~ scale(bm2) + scale(km2), directed = "directed", test.statistic = "beta") 
+
+# bats used
+bats <- rownames(bm2)
+test <- bonds %>%
+  filter(actor %in% bats) %>% 
+  select(actor, site1, season1, a.sex) %>% 
+  distinct()
 
 ##################################################################
 
@@ -192,3 +199,8 @@ p <-
   ggtitle("nonkin call similarity by grooming relationship")+
   theme_bw()
 p
+
+# bats used
+test2 <- bonds2 %>% 
+  select(actor,site1,season1,a.sex) %>% 
+  distinct()

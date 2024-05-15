@@ -97,12 +97,12 @@ common_matrices <- function(m1 = m1, m2 = m2){
 ###################################################################
 
 # get kinship data
-k <- readRDS("vocal_social_data.RDS")
+k <- read.csv("vocal_social_data.csv")
 
 # get kinship matrix
 km <- 
   k %>% 
-  dplyr::select(bat1,bat2, kinship) %>% 
+  dplyr::select(actor,receiver,kinship) %>% 
   graph_from_data_frame(directed=T) %>% 
   get.adjacency(attr='kinship', sparse=FALSE)
 
