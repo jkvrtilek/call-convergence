@@ -1,4 +1,4 @@
-# predict vocal similarity from grooming
+# predict vocal distance from grooming
 # adapted 10 April 2024 from food-sharing code
 
 library(tidyverse)
@@ -138,11 +138,11 @@ bm2 <- common_matrices(bm, dist.m)[[1]]
 dm2 <- common_matrices(bm, dist.m)[[2]]
 km2 <- common_matrices(dm2, km)[[2]]
 
-# get correlation between bond strength and call similarity
+# get correlation between bond strength and vocal distance
 set.seed(123)
 mantel(bm2, dm2, method= "spearman")
 
-# predict call similarity using both social bond and kinship
+# predict vocal distance using both social bond and kinship
 set.seed(123)
 mrqap.dsp(dm2 ~ scale(bm2) + scale(km2), directed = "directed", test.statistic = "beta") 
 
@@ -194,9 +194,9 @@ p <-
   geom_jitter(data= points, aes(y= dist), size=1, height=0, width=0.1, alpha=0.25)+
   geom_point(size=2)+
   geom_errorbar(aes(ymin=low, ymax=high, width=.1), size=1)+
-  ylab("vocal similarity")+
+  ylab("vocal distance")+
   xlab("")+
-  ggtitle("nonkin call similarity by grooming relationship")+
+  ggtitle("nonkin vocal distance by grooming relationship")+
   theme_bw()
 p
 

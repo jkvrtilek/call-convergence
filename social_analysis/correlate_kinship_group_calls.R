@@ -173,7 +173,7 @@ p1 <- means %>%
   ggplot(aes(x=treatment, y=mean))+
   geom_point(size=2)+
   geom_errorbar(aes(ymin=low, ymax=high, width=.1), size=1)+
-  ylab("call distance")+
+  ylab("vocal distance")+
   xlab("")+
   ggtitle("vocal distance by time together")+
   theme_bw()+
@@ -200,7 +200,7 @@ p2 <-
   ggplot(aes(x=kin, y=mean))+
   geom_point(size=2)+
   geom_errorbar(aes(ymin=low, ymax=high, width=.2), size=1)+
-  ylab("call distance")+
+  ylab("vocal distance")+
   xlab("")+
   ggtitle("vocal distance by kinship")+
   theme_bw()+
@@ -230,7 +230,7 @@ kindata <- d %>%
 ggplot()+
   geom_point(data = kinmeans, aes(x=kin, y=mean), size=2)+
   geom_errorbar(data = kinmeans, aes(x=kin, y=mean, ymin=low, ymax=high, width=.2), size=1)+
-  ylab("call distance")+
+  ylab("vocal distance")+
   xlab("")+
   geom_violin(data = kindata, aes(x=kin, y=dist), alpha = 0.1) +
   theme_bw()+
@@ -250,7 +250,7 @@ groupdata <- d %>%
 ggplot()+
   geom_point(data = groupmeans, aes(x=treatment, y=mean), size=2)+
   geom_errorbar(data = groupmeans, aes(x=treatment, y=mean, ymin=low, ymax=high, width=.1), size=1)+
-  ylab("call distance")+
+  ylab("vocal distance")+
   xlab("")+
   geom_violin(data = groupdata, aes(x=treatment, y=dist), alpha = 0.1) +
   theme_bw()+
