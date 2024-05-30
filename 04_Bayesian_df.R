@@ -31,7 +31,7 @@ rates15 <- read.csv("social_data/2010-2014_foodsharing/food_sharing_rates_2010-2
   mutate(dir.dyad = paste(donor,receiver,sep="_")) %>% 
   mutate(grooming = NA) %>% 
   mutate(foodsharing = donation.rate) %>%
-  mutate(actor.sex = toupper(actor.sex)) %>% 
+  mutate(actor.sex = toupper(donor.sex)) %>% 
   mutate(receiver.sex = toupper(receiver.sex)) %>% 
   select(dir.dyad,foodsharing,grooming,actor.sex,receiver.sex)
 
