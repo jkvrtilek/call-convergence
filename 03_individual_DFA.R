@@ -87,9 +87,11 @@ accuracy
 # get mean and range of correct assignments/all assignments to each bat
 range(diag(cm)/colSums(cm), na.rm=T)
 mean(diag(cm)/colSums(cm), na.rm=T)
+median(diag(cm)/colSums(cm), na.rm=T)
 # get mean and range of correct assignments/all calls from each bat
 range(diag(cm)/rowSums(cm), na.rm=T)
 mean(diag(cm)/rowSums(cm), na.rm=T)
+median(diag(cm)/rowSums(cm), na.rm=T)
 
 # save classification matrix
 write.csv(cm, "dfa-cv-results-standard.csv")

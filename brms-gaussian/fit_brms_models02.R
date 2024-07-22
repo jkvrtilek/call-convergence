@@ -315,7 +315,8 @@ kgf_plot <-
   theme_bw()+
   coord_cartesian(xlim= c(-1,1))+
   theme(axis.text=element_text(size=11), strip.text = element_text(size=12))
-
+kgf_plot
+ggsave(paste("kgf_brms_",Sys.Date(),".jpg", sep = ""), path = "/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/results")
 
 
 

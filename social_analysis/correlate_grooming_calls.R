@@ -199,6 +199,7 @@ p <-
   ggtitle("nonkin vocal distance by grooming relationship")+
   theme_bw()
 p
+ggsave(paste("grooming_means_", Sys.Date(), ".jpg", sep = ""), path = "/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/results")
 
 # bats used
 test2 <- bonds2 %>% 

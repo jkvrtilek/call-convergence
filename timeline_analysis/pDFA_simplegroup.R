@@ -361,6 +361,8 @@ lay <- rbind(c(1,1),
              c(3,3),
              c(3,3),
              c(4,4))
-grid_arrange_shared_legend(p1,subtitle1,p2,subtitle2,ncol=2,nrow=5,
+grid1 <- grid_arrange_shared_legend(p1,subtitle1,p2,subtitle2,ncol=2,nrow=5,
                            top = "Title",layout_matrix = lay,position="bottom")
-
+ggsave(paste("cluster_fig_", Sys.Date(), ".jpg", sep = ""),
+       path = "/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/results",
+       plot = grid1)

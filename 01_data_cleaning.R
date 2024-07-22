@@ -20,6 +20,10 @@ length(grep("2018-", d$sound.files))
 # convert seconds to milliseconds
 d2 <- d
 d2$duration <- d$duration * 1000
+d2$time.median <- d$time.median * 1000
+d2$time.Q25 <- d$time.Q25 * 1000
+d2$time.Q75 <- d$time.Q75 * 1000
+d2$time.IQR <- d$time.IQR * 1000
 
 # duration and peak frequency filters
 d3 <- d2 %>% 

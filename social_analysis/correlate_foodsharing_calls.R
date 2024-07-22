@@ -199,6 +199,8 @@ p <-
   ggtitle("nonkin vocal distance by food-sharing relationship")+
   theme_bw()
 p
+ggsave(paste("foodsharing_means_", Sys.Date(), ".jpg", sep = ""),
+       path = "/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/results")
 
 # bats used
 test2 <- bonds2 %>% 

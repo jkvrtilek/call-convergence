@@ -180,6 +180,7 @@ p1 <- means %>%
   ylim(1.7, 2.7)
 #+ theme(axis.text.y = element_text(size = 11), axis.title.y = element_text(size = 15))
 p1
+ggsave(paste("group_membership_means_", Sys.Date(), ".jpg", sep = ""), path = "/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/results")
 
 # plot vocal distance by kinship category
 means_kin <- 
@@ -207,6 +208,7 @@ p2 <-
   ylim(1.7, 2.7)
 #+ theme(axis.text.y = element_text(size = 16), axis.text.x = element_text(size = 20), axis.title.y = element_text(size = 22))
 p2
+ggsave(paste("kinship_means_", Sys.Date(), ".jpg", sep = ""), path = "/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence/results")
 
 p2+p1+ plot_layout(widths = c(1, 4))
 
