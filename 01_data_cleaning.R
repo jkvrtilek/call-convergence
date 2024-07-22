@@ -3,7 +3,7 @@
 # 23 March 2023
 
 # set working directory
-setwd("/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence")
+setwd("/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/LFS")
 
 # load packages
 library(tidyverse)
@@ -25,12 +25,16 @@ d2$time.Q25 <- d$time.Q25 * 1000
 d2$time.Q75 <- d$time.Q75 * 1000
 d2$time.IQR <- d$time.IQR * 1000
 
-# duration and peak frequency filters
+# filters: duration, peak frequency, time variables
 d3 <- d2 %>% 
   filter(duration > 3) %>% 
   filter(duration < 50) %>% 
   filter(peakf > 10) %>% 
-  filter(peakf < 30)
+  filter(peakf < 30) %>% 
+  filter(time.Q25 > 0) %>% 
+  filter(time.median > 0) %>% 
+  filter(time.Q75 > 0) %>% 
+  filter(time.IQR > 0)
 
 # add binary variable for whether fundamental frequency measures succeeded
 d4 <- d3 %>% 
