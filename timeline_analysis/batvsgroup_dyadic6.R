@@ -171,7 +171,15 @@ dfa_pre <- lda(individual ~
               enddom+      
               dfslope+   
               meanpeakf+   
-              peakf,
+              peakf+
+              maxslope+
+              minslope+
+              abs_minslope+
+              pos_slopes+
+              neg_slopes+
+              turns+
+              meanslope+
+              segments,
             CV= F, 
             data=pre)
 
@@ -219,7 +227,15 @@ dfa_post <- lda(individual ~
               enddom+      
               dfslope+   
               meanpeakf+   
-              peakf,
+              peakf+
+              maxslope+
+              minslope+
+              abs_minslope+
+              pos_slopes+
+              neg_slopes+
+              turns+
+              meanslope+
+              segments,
             CV= F, 
             data=post)
 

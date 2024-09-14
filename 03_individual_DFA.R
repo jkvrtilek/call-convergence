@@ -141,7 +141,15 @@ dfa2 <- lda(bat ~
               enddom+      
               dfslope+   
               meanpeakf+   
-              peakf,
+              peakf+
+              maxslope+
+              minslope+
+              abs_minslope+
+              pos_slopes+
+              neg_slopes+
+              turns+
+              meanslope+
+              segments,
             CV=F, 
             data=d2)
 
@@ -258,7 +266,15 @@ for (i in 1:perms) {
                     enddom+      
                     dfslope+   
                     meanpeakf+   
-                    peakf,
+                    peakf+
+                    maxslope+
+                    minslope+
+                    abs_minslope+
+                    pos_slopes+
+                    neg_slopes+
+                    turns+
+                    meanslope+
+                    segments,
                   CV= F, 
                   data=random.data)
   
