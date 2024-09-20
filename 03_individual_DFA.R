@@ -9,8 +9,8 @@ rm(list=ls())
 setwd("/Users/jkvrtilek/Desktop/OSU/PhD/GitHub/call-convergence")
 
 # load packages
-library(MASS)
 library(tidyverse)
+library(MASS)
 
 # get data
 raw <- read.csv("vampire_call_measures_filtered_transformed.csv")
@@ -27,7 +27,7 @@ sort(unique(d$sample.size))
 
 # set minimum sample size
 # good rule of thumb is 20 obs per variable
-predictors <- ncol(raw) - 3
+predictors <- ncol(temp <- d %>% dplyr::select(duration:segments))
 min.sample.size <- predictors * 20
 
 # filter calls by min sample size
