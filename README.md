@@ -1,3 +1,4 @@
 # call-convergence
 
-# Step 1: false positive filter on spectro_analysis results
+# This project is in progress. Please contact Julia Vrtilek and Gerald Carter (gcarter1640@gmail.com) for more information.
+
